@@ -1,6 +1,6 @@
 {
 	"name": "microcms-astro-loader",
-	"description": "",
+	"description": "microCMS Content Loader for Astro Content Layer",
 	"version": "0.0.1",
 	"type": "module",
 	"author": "Shinya Fujino <shf0811@gmail.com> (https://github.com/morinokami)",
@@ -10,7 +10,7 @@
 		"url": "git+https://github.com/morinokami/microcms-astro-loader.git"
 	},
 	"bugs": "https://github.com/morinokami/microcms-astro-loader/issues",
-	"keywords": ["astro", "withastro"],
+	"keywords": ["microcms", "astro", "astro-loader"],
 	"exports": {
 		".": "./dist/index.js",
 		"./package.json": "./package.json"
@@ -20,6 +20,9 @@
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"microcms-js-sdk": "3.1.2"
 	},
 	"devDependencies": {
 		"@types/node": "22.5.5",
