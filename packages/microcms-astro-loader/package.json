@@ -1,0 +1,33 @@
+{
+	"name": "microcms-astro-loader",
+	"description": "",
+	"version": "0.0.1",
+	"type": "module",
+	"author": "Shinya Fujino <shf0811@gmail.com> (https://github.com/morinokami)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/morinokami/microcms-astro-loader.git"
+	},
+	"bugs": "https://github.com/morinokami/microcms-astro-loader/issues",
+	"keywords": ["astro", "withastro"],
+	"exports": {
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
+	},
+	"types": "./dist/index.d.ts",
+	"files": ["dist"],
+	"scripts": {
+		"build": "tsup",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/node": "22.5.5",
+		"astro": "5.0.0-beta.1",
+		"tsup": "8.3.0",
+		"typescript": "5.6.2"
+	},
+	"peerDependencies": {
+		"astro": "^4.0.0"
+	}
+}
