@@ -1,0 +1,49 @@
+---
+import "@/styles/global.css";
+
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  openGraph?: {
+    title: string;
+    description: string;
+    image: string;
+  };
+}
+
+const {
+  title,
+  // API 数の上限により meta を設定できないためハードコード
+  description = "microCMS と Astro で作られたシンプルなコーポレートサイトです。",
+  openGraph = {
+    title: "シンプルなコーポレートサイト",
+    description:
+      "microCMS と Astro で作られたシンプルなコーポレートサイトです。",
+    image: new URL("/ogp.png", Astro.site),
+  },
+} = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={openGraph.title} />
+    <meta property="og:description" content={openGraph.description} />
+    <meta property="og:image" content={openGraph.image} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+  </head>
+  <body class="body" style="background-color: #f9f9f9;">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>

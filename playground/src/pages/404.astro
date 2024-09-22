@@ -1,0 +1,57 @@
+---
+import Hero from "@/components/Hero.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="404">
+  <Hero title="404" sub="Not Found" />
+  <div class="container">
+    <dl>
+      <dt class="title">ページが見つかりませんでした</dt>
+      <dd class="text">
+        あなたがアクセスしようとしたページは存在しません。
+        <br />
+        URLを再度ご確認ください。
+      </dd>
+    </dl>
+  </div>
+</Layout>
+
+<style>
+  .title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
+    margin-bottom: 24px;
+  }
+
+  .text {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .container {
+    position: relative;
+    background-color: #fff;
+    width: 840px;
+    margin: -40px auto 0;
+    padding: 160px 80px;
+    border-radius: var(--border-radius);
+  }
+
+  @media (max-width: 640px) {
+    .title {
+      text-align: left;
+    }
+
+    .text {
+      text-align: left;
+    }
+    .container {
+      width: calc(100% - 32px);
+      margin: -40px auto 0;
+      padding: 40px 16px;
+    }
+  }
+</style>

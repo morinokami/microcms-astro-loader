@@ -1,0 +1,26 @@
+---
+import NewsListItem from "./NewsListItem.astro";
+import type { InferEntrySchema } from "astro:content";
+
+interface Props {
+  articles?: {
+    id: string;
+    collection: "news";
+    data: InferEntrySchema<"news">;
+  }[];
+}
+
+const { articles } = Astro.props;
+---
+
+{
+  !articles ? null : articles.length === 0 ? (
+    <p>記事がありません</p>
+  ) : (
+    <ul>
+      {articles.map((article) => (
+        <NewsListItem news={article.data} />
+      ))}
+    </ul>
+  )
+}
