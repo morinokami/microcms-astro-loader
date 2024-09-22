@@ -1,9 +1,10 @@
 import { defineCollection, z } from "astro:content";
+import { MICROCMS_API_KEY, MICROCMS_SERVICE_DOMAIN } from "astro:env/server";
 import { microCMSListLoader } from "microcms-astro-loader";
 
 const microCMSConfig = {
-  apiKey: import.meta.env.MICROCMS_API_KEY as string,
-  serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN as string,
+  apiKey: MICROCMS_API_KEY,
+  serviceDomain: MICROCMS_SERVICE_DOMAIN,
 };
 
 const microCMSMeta = {

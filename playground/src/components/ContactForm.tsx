@@ -1,3 +1,4 @@
+import { actions, isInputError } from "astro:actions";
 import React, { useRef, useState } from "react";
 
 import * as styles from "./ContactForm.css";
@@ -12,27 +13,23 @@ export default function ContactForm() {
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
-  // TODO: Use action
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = (await fetch("/api/submit-contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        lastname: lastnameRef.current?.value,
-        firstname: firstnameRef.current?.value,
-        company: companyRef.current?.value,
-        email: emailRef.current?.value,
-        message: messageRef.current?.value,
-      }),
-    }).then((res) => res.json())) as {
-      status: "success" | "error";
-      message?: string;
-    };
-    if (res.status === "error") {
-      setError(res.message);
+
+    const { error } = await actions.submitContact({
+      lastname: lastnameRef.current?.value ?? "",
+      firstname: firstnameRef.current?.value ?? "",
+      company: companyRef.current?.value ?? "",
+      email: emailRef.current?.value ?? "",
+      message: messageRef.current?.value ?? "",
+    });
+
+    if (error) {
+      if (isInputError(error) && error.issues.length > 0) {
+        setError(error.issues[0].message);
+      } else {
+        setError(error.message);
+      }
     } else {
       setSuccess(true);
     }
