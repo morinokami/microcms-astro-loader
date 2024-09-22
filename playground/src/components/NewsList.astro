@@ -1,0 +1,23 @@
+---
+import type { Article } from '@/lib/microcms';
+
+import NewsListItem from './NewsListItem.astro';
+
+interface Props {
+  articles?: Article[];
+}
+
+const { articles } = Astro.props;
+---
+
+{
+  !articles ? null : articles.length === 0 ? (
+    <p>記事がありません</p>
+  ) : (
+    <ul>
+      {articles.map((article) => (
+        <NewsListItem news={article} />
+      ))}
+    </ul>
+  )
+}

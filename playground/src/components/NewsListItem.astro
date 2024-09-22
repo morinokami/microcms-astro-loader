@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+
+import noImg from '@/images/no-image.png';
+import type { Article } from '@/lib/microcms';
+
+import Category from './Category.astro';
+import PublishedDate from './PublishedDate.astro';
+
+interface Props {
+  news: Article;
+}
+
+const { news } = Astro.props;
+---
+
+<li class="list">
+  <a href={`/news/${news.id}`} class="link">
+    {
+      news.thumbnail ? (
+        <Image
+          src={news.thumbnail?.url as string}
+          alt=""
+          class="image"
+          width={news.thumbnail?.width as number}
+          height={news.thumbnail?.height as number}
+        />
+      ) : (
+        <Image class="image" src={noImg} alt="No Image" width={1200} height={630} />
+      )
+    }
+    <dl class="content">
+      <dt class="title">{news.title}</dt>
+      <dd class="meta">
+        <Category category={news.category} />
+        <PublishedDate date={news.publishedAt || news.createdAt} />
+      </dd>
+    </dl>
+  </a>
+</li>
+
+<style>
+  .list {
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  .list:last-child {
+    border-bottom: none;
+  }
+
+  .link {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 24px 0;
+  }
+
+  .image {
+    width: 200px;
+    height: auto;
+    border-radius: var(--border-radius);
+  }
+
+  .title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .link {
+      display: block;
+      padding: 16px 0;
+    }
+    .image {
+      display: none;
+    }
+
+    .title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+</style>

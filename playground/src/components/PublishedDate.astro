@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+
+import clock from '@/images/clock.svg';
+import { formatDate } from '@/lib/utils';
+
+interface Props {
+  date: string;
+}
+
+const { date } = Astro.props;
+---
+
+<span class="date">
+  <Image src={clock} alt="" width={16} height={16} />
+  {formatDate(date)}
+</span>
+
+<style>
+  .date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0.8rem 0;
+    font-size: 1rem;
+  }
+</style>

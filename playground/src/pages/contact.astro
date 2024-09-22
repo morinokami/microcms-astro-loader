@@ -1,0 +1,33 @@
+---
+import ContactForm from '@/components/ContactForm';
+import Hero from '@/components/Hero.astro';
+import Sheet from '@/components/Sheet.astro';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="コンタクト｜シンプルなコーポレートサイト">
+  <Hero title="Contact" sub="お問い合わせ" />
+  <Sheet>
+    <div class="container">
+      <p class="text">
+        ご質問、ご相談は下記フォームよりお問い合わせください。
+        <br />
+         内容確認後、担当者より通常3営業日以内にご連絡いたします。
+      </p>
+      <ContactForm client:load />
+    </div>
+  </Sheet>
+</Layout>
+
+<style>
+  .text {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 640px) {
+    .text {
+      text-align: left;
+    }
+  }
+</style>

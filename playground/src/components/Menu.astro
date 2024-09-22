@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+
+import close from '@/images/close.svg';
+import menu from '@/images/menu.svg';
+---
+
+<div>
+  <nav class="nav">
+    <ul class="items">
+      <li>
+        <a href="/news" class="menu-toggle"> ニュース</a>
+      </li>
+      <li>
+        <a href="/business" class="menu-toggle"> 事業内容</a>
+      </li>
+      <li>
+        <a href="/members" class="menu-toggle"> メンバー</a>
+      </li>
+      <li>
+        <a href="" class="menu-toggle"> 採用情報</a>
+      </li>
+      <li>
+        <a href="/contact" class="menu-toggle"> お問い合わせ</a>
+      </li>
+    </ul>
+    <button class="button close menu-toggle">
+      <Image src={close} alt="閉じる" width={24} height={24} />
+    </button>
+  </nav>
+  <button class="button menu-toggle">
+    <Image src={menu} alt="メニュー" width={24} height={24} />
+  </button>
+</div>
+
+<style>
+  .items {
+    display: flex;
+    color: #fff;
+    gap: 40px;
+  }
+
+  .button {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .nav {
+      display: none;
+    }
+
+    .nav.open {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--color-bg-painted);
+      color: var(--color-text-unpainted);
+      padding: 24px 16px;
+    }
+
+    .items {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .button {
+      display: flex;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .close {
+      position: absolute;
+      top: 24px;
+      right: 16px;
+    }
+  }
+</style>
+
+<script>
+  let open = false;
+  const nav = document.querySelector('.nav');
+  const toggles = document.querySelectorAll('.menu-toggle');
+  toggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      open = !open;
+      if (open) {
+        nav?.classList.add('open');
+      } else {
+        nav?.classList.remove('open');
+      }
+    });
+  });
+</script>

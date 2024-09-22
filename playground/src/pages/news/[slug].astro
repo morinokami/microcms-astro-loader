@@ -1,0 +1,62 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import Article from '@/components/Article.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Hero from '@/components/Hero.astro';
+import Sheet from '@/components/Sheet.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getNewsList } from '@/lib/microcms';
+
+export async function getStaticPaths() {
+  const data = await getNewsList();
+  return data.contents.map((content) => {
+    return {
+      params: {
+        slug: content.id,
+      },
+      props: {
+        data: content,
+      },
+    };
+  });
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { data } = Astro.props;
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+  openGraph={{ title: data.title, description: data.description, image: data.thumbnail?.url ?? '' }}
+>
+  <Hero title="News" sub="ニュース" />
+  <Sheet>
+    <Article data={data} />
+    <div class="footer">
+      <ButtonLink href="/news">ニュース一覧へ</ButtonLink>
+    </div>
+  </Sheet>
+</Layout>
+
+<style>
+  .button {
+    display: block;
+    padding: 20px 40px;
+    border-radius: var(--border-radius);
+    width: 300px;
+    background:
+      url('/arrow-right-circle.svg') no-repeat right 20px center,
+      #fff;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--color-border);
+    margin-top: 80px;
+    padding-top: 40px;
+  }
+</style>
