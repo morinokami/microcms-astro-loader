@@ -1,22 +1,22 @@
 ---
-import type { InferGetStaticPropsType } from 'astro';
+import type { InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
 
-import Article from '@/components/Article.astro';
-import ButtonLink from '@/components/ButtonLink.astro';
-import Hero from '@/components/Hero.astro';
-import Sheet from '@/components/Sheet.astro';
-import Layout from '@/layouts/Layout.astro';
-import { getNewsList } from '@/lib/microcms';
+import Article from "@/components/Article.astro";
+import ButtonLink from "@/components/ButtonLink.astro";
+import Hero from "@/components/Hero.astro";
+import Sheet from "@/components/Sheet.astro";
+import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const data = await getNewsList();
-  return data.contents.map((content) => {
+  const news = await getCollection("news");
+  return news.map((content) => {
     return {
       params: {
-        slug: content.id,
+        slug: content.data.id,
       },
       props: {
-        data: content,
+        data: content.data,
       },
     };
   });
@@ -30,7 +30,11 @@ const { data } = Astro.props;
 <Layout
   title={data.title}
   description={data.description}
-  openGraph={{ title: data.title, description: data.description, image: data.thumbnail?.url ?? '' }}
+  openGraph={{
+    title: data.title,
+    description: data.description,
+    image: data.thumbnail?.url ?? "",
+  }}
 >
   <Hero title="News" sub="ニュース" />
   <Sheet>
@@ -48,7 +52,7 @@ const { data } = Astro.props;
     border-radius: var(--border-radius);
     width: 300px;
     background:
-      url('/arrow-right-circle.svg') no-repeat right 20px center,
+      url("/arrow-right-circle.svg") no-repeat right 20px center,
       #fff;
   }
 

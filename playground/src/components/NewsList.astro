@@ -1,10 +1,13 @@
 ---
-import type { Article } from '@/lib/microcms';
-
-import NewsListItem from './NewsListItem.astro';
+import NewsListItem from "./NewsListItem.astro";
+import type { InferEntrySchema } from "astro:content";
 
 interface Props {
-  articles?: Article[];
+  articles?: {
+    id: string;
+    collection: "news";
+    data: InferEntrySchema<"news">;
+  }[];
 }
 
 const { articles } = Astro.props;
@@ -16,7 +19,7 @@ const { articles } = Astro.props;
   ) : (
     <ul>
       {articles.map((article) => (
-        <NewsListItem news={article} />
+        <NewsListItem news={article.data} />
       ))}
     </ul>
   )

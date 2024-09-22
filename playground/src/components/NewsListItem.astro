@@ -1,17 +1,17 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import noImg from '@/images/no-image.png';
-import type { Article } from '@/lib/microcms';
+import noImg from "@/images/no-image.png";
 
-import Category from './Category.astro';
-import PublishedDate from './PublishedDate.astro';
+// import Category from './Category.astro';
+import PublishedDate from "./PublishedDate.astro";
+import type { InferEntrySchema } from "astro:content";
 
 interface Props {
-  news: Article;
+  news: InferEntrySchema<"news">;
 }
 
-const { news } = Astro.props;
+let { news } = Astro.props;
 ---
 
 <li class="list">
@@ -26,13 +26,19 @@ const { news } = Astro.props;
           height={news.thumbnail?.height as number}
         />
       ) : (
-        <Image class="image" src={noImg} alt="No Image" width={1200} height={630} />
+        <Image
+          class="image"
+          src={noImg}
+          alt="No Image"
+          width={1200}
+          height={630}
+        />
       )
     }
     <dl class="content">
       <dt class="title">{news.title}</dt>
       <dd class="meta">
-        <Category category={news.category} />
+        <!-- <Category category={news.category} /> -->
         <PublishedDate date={news.publishedAt || news.createdAt} />
       </dd>
     </dl>

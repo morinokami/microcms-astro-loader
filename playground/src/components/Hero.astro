@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import imgMv from '@/images/img-mv.jpg';
+import imgMv from "@/images/img-mv.jpg";
 
 interface Props {
   title: string;
@@ -16,7 +16,14 @@ const { title, sub } = Astro.props;
     <h1 class="title">{title}</h1>
     <p class="sub">{sub}</p>
   </div>
-  <Image class="bgimg" src={imgMv} alt="" width={4000} height={1200} loading="eager" />
+  <Image
+    class="bgimg"
+    src={imgMv}
+    alt=""
+    width={4000}
+    height={1200}
+    loading="eager"
+  />
 </section>
 
 <style>
@@ -47,7 +54,7 @@ const { title, sub } = Astro.props;
   }
 
   .sub::before {
-    content: '';
+    content: "";
     display: block;
     height: 1px;
     width: 20px;
@@ -55,7 +62,7 @@ const { title, sub } = Astro.props;
   }
 
   .sub::after {
-    content: '';
+    content: "";
     display: block;
     height: 1px;
     width: 20px;

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 
-import * as styles from './ContactForm.css';
+import * as styles from "./ContactForm.css";
 
 export default function ContactForm() {
   const lastnameRef = useRef<HTMLInputElement>(null);
@@ -15,10 +15,10 @@ export default function ContactForm() {
   // TODO: Use action
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = (await fetch('/api/submit-contact', {
-      method: 'POST',
+    const res = (await fetch("/api/submit-contact", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         lastname: lastnameRef.current?.value,
@@ -27,8 +27,11 @@ export default function ContactForm() {
         email: emailRef.current?.value,
         message: messageRef.current?.value,
       }),
-    }).then((res) => res.json())) as { status: 'success' | 'error'; message?: string };
-    if (res.status === 'error') {
+    }).then((res) => res.json())) as {
+      status: "success" | "error";
+      message?: string;
+    };
+    if (res.status === "error") {
       setError(res.message);
     } else {
       setSuccess(true);
@@ -51,26 +54,46 @@ export default function ContactForm() {
           <label className={styles.label} htmlFor="lastname">
             姓
           </label>
-          <input className={styles.textfield} type="text" id="lastname" ref={lastnameRef} />
+          <input
+            className={styles.textfield}
+            type="text"
+            id="lastname"
+            ref={lastnameRef}
+          />
         </div>
         <div className={styles.item}>
           <label className={styles.label} htmlFor="firstname">
             名
           </label>
-          <input className={styles.textfield} type="text" id="firstname" ref={firstnameRef} />
+          <input
+            className={styles.textfield}
+            type="text"
+            id="firstname"
+            ref={firstnameRef}
+          />
         </div>
       </div>
       <div className={styles.item}>
         <label className={styles.label} htmlFor="conpany">
           会社名
         </label>
-        <input className={styles.textfield} type="text" id="company" ref={companyRef} />
+        <input
+          className={styles.textfield}
+          type="text"
+          id="company"
+          ref={companyRef}
+        />
       </div>
       <div className={styles.item}>
         <label className={styles.label} htmlFor="email">
           メールアドレス
         </label>
-        <input className={styles.textfield} type="text" id="email" ref={emailRef} />
+        <input
+          className={styles.textfield}
+          type="text"
+          id="email"
+          ref={emailRef}
+        />
       </div>
       <div className={styles.item}>
         <label className={styles.label} htmlFor="message">

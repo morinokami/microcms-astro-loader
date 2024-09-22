@@ -1,30 +1,39 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
-import ButtonLink from '@/components/ButtonLink.astro';
-import NewsList from '@/components/NewsList.astro';
-import { TOP_NEWS_LIMIT } from '@/constants/index';
-import imgAboutUs from '@/images/img-aboutus.jpg';
-import imgBusiness from '@/images/img-business.png';
-import imgHiring from '@/images/img-hiring.jpg';
-import imgMv from '@/images/img-mv.jpg';
-import Layout from '@/layouts/Layout.astro';
-import { getNewsList } from '@/lib/microcms';
+import ButtonLink from "@/components/ButtonLink.astro";
+import NewsList from "@/components/NewsList.astro";
+import { TOP_NEWS_LIMIT } from "@/constants/index";
+import imgAboutUs from "@/images/img-aboutus.jpg";
+import imgBusiness from "@/images/img-business.png";
+import imgHiring from "@/images/img-hiring.jpg";
+import imgMv from "@/images/img-mv.jpg";
+import Layout from "@/layouts/Layout.astro";
 
-const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
+const news = (await getCollection("news")).slice(0, TOP_NEWS_LIMIT);
 ---
 
 <Layout title="シンプルなコーポレートサイト">
   <section class="top">
     <div>
       <h1 class="title">テクノロジーの力で世界を変える</h1>
-      <p class="description">私たちは市場をリードしているグローバルテックカンパニーです。</p>
+      <p class="description">
+        私たちは市場をリードしているグローバルテックカンパニーです。
+      </p>
     </div>
-    <Image class="bgimg" src={imgMv} alt="" width={3600} height={1200} loading="eager" />
+    <Image
+      class="bgimg"
+      src={imgMv}
+      alt=""
+      width={3600}
+      height={1200}
+      loading="eager"
+    />
   </section>
   <section class="news">
     <h2 class="newsTitle">News</h2>
-    <NewsList articles={data.contents} />
+    <NewsList articles={news} />
     <div class="newsLink">
       <ButtonLink href="/news">もっとみる</ButtonLink>
     </div>
@@ -37,17 +46,29 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
         <p class="sectionDescription">
           当社は、次世代テクノロジーの研究開発・製造・販売を行う革新的な企業です。
           <br />
-           AI、ロボット工学、自律システムなど、幅広い分野でのソリューション提供を通じて、社会の進化と未来の創造に貢献します。
+          AI、ロボット工学、自律システムなど、幅広い分野でのソリューション提供を通じて、社会の進化と未来の創造に貢献します。
         </p>
         <ButtonLink href="/business">もっとみる</ButtonLink>
       </div>
-      <Image class="businessImg" src={imgBusiness} alt="" width={1024} height={1024} />
+      <Image
+        class="businessImg"
+        src={imgBusiness}
+        alt=""
+        width={1024}
+        height={1024}
+      />
     </div>
   </section>
   <div class="aboutus">
     <section class="section">
       <div class="horizontal">
-        <Image class="aboutusImg" src={imgAboutUs} alt="" width={6000} height={4000} />
+        <Image
+          class="aboutusImg"
+          src={imgAboutUs}
+          alt=""
+          width={6000}
+          height={4000}
+        />
         <div>
           <h2 class="sectionTitleEn">About Us</h2>
           <p class="sectionTitleJa">私たちについて</p>
@@ -67,7 +88,7 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
             <dd class="infoDescription">
               〒000-0000
               <br />
-               東京都渋谷区渋谷1-1-1
+              東京都渋谷区渋谷1-1-1
             </dd>
           </dl>
           <dl class="info">
@@ -90,11 +111,17 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
         <p class="sectionDescription">
           当社では、チャレンジ精神を持った人材を求めています。
           <br />
-           新しいアイデアを出し合い、成長する環境で活躍したい方は、ぜひご応募ください。当社でのキャリアを築きながら、技術の最前線で力を発揮しましょう。
+          新しいアイデアを出し合い、成長する環境で活躍したい方は、ぜひご応募ください。当社でのキャリアを築きながら、技術の最前線で力を発揮しましょう。
         </p>
         <ButtonLink href="">採用情報へ</ButtonLink>
       </div>
-      <Image class="hiringImg" src={imgHiring} alt="" width={960} height={960} />
+      <Image
+        class="hiringImg"
+        src={imgHiring}
+        alt=""
+        width={960}
+        height={960}
+      />
     </div>
   </section>
 </Layout>
@@ -174,7 +201,7 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
   }
 
   .sectionTitleJa::before {
-    content: '';
+    content: "";
     display: block;
     height: 1px;
     width: 40px;
@@ -204,7 +231,7 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
     border-radius: var(--border-radius);
     width: 300px;
     background:
-      url('/arrow-right.svg') no-repeat right 20px center,
+      url("/arrow-right.svg") no-repeat right 20px center,
       var(--color-button-primary);
     color: var(--color-text-unpainted);
   }
@@ -310,7 +337,7 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
     }
 
     .sectionTitleJa::before {
-      content: '';
+      content: "";
       display: block;
       height: 1px;
       width: 40px;
@@ -349,7 +376,7 @@ const data = await getNewsList({ limit: TOP_NEWS_LIMIT });
       border-radius: var(--border-radius);
       width: 100%;
       background:
-        url('/arrow-right.svg') no-repeat right 20px center,
+        url("/arrow-right.svg") no-repeat right 20px center,
         var(--color-button-primary);
       color: var(--color-text-unpainted);
     }

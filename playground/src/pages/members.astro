@@ -1,13 +1,13 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import ButtonLink from '@/components/ButtonLink.astro';
-import Hero from '@/components/Hero.astro';
-import Sheet from '@/components/Sheet.astro';
-import Layout from '@/layouts/Layout.astro';
-import { getMembersList } from '@/lib/microcms';
+import ButtonLink from "@/components/ButtonLink.astro";
+import Hero from "@/components/Hero.astro";
+import Sheet from "@/components/Sheet.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const data = await getMembersList();
+const members = await getCollection("members");
 ---
 
 <Layout title="メンバー｜シンプルなコーポレートサイト">
@@ -15,23 +15,23 @@ const data = await getMembersList();
   <Sheet>
     <div class="container">
       {
-        data.contents.length === 0 ? (
+        members.length === 0 ? (
           <p class="empty">メンバーが登録されていません。</p>
         ) : (
           <ul>
-            {data.contents.map((member) => (
+            {members.map((member) => (
               <li class="list">
                 <Image
-                  src={member.image?.url as string}
+                  src={member.data.image?.url as string}
                   alt=""
-                  width={member.image?.width as number}
-                  height={member.image?.height as number}
+                  width={member.data.image?.width as number}
+                  height={member.data.image?.height as number}
                   class="image"
                 />
                 <dl>
-                  <dt class="name">{member.name}</dt>
-                  <dd class="position">{member.position}</dd>
-                  <dd class="profile">{member.profile}</dd>
+                  <dt class="name">{member.data.name}</dt>
+                  <dd class="position">{member.data.position}</dd>
+                  <dd class="profile">{member.data.profile}</dd>
                 </dl>
               </li>
             ))}

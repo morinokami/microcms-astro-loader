@@ -1,13 +1,13 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import ButtonLink from '@/components/ButtonLink.astro';
-import Hero from '@/components/Hero.astro';
-import Sheet from '@/components/Sheet.astro';
-import Layout from '@/layouts/Layout.astro';
-import { getBusinessList } from '@/lib/microcms';
+import ButtonLink from "@/components/ButtonLink.astro";
+import Hero from "@/components/Hero.astro";
+import Sheet from "@/components/Sheet.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const data = await getBusinessList();
+const businesses = await getCollection("businesses");
 ---
 
 <Layout title="事業内容｜シンプルなコーポレートサイト">
@@ -15,34 +15,34 @@ const data = await getBusinessList();
   <Sheet>
     <div class="container">
       {
-        data.contents.length === 0 ? (
+        businesses.length === 0 ? (
           <p class="empty">事業内容が登録されていません。</p>
         ) : (
           <ul>
-            {data.contents.map((business) => (
+            {businesses.map((business) => (
               <li class="list">
                 <dl class="flex">
                   <dt class="name">
                     <Image
-                      src={business.logo?.url as string}
+                      src={business.data.logo?.url as string}
                       alt=""
-                      width={business.logo?.width as number}
-                      height={business.logo?.height as number}
+                      width={business.data.logo?.width as number}
+                      height={business.data.logo?.height as number}
                       class="logo"
                     />
                   </dt>
-                  <dd class="description">{business.description}</dd>
+                  <dd class="description">{business.data.description}</dd>
                   <dd class="action">
-                    <ButtonLink href={business.link} isExternal>
+                    <ButtonLink href={business.data.link} isExternal>
                       サービスサイトへ
                     </ButtonLink>
                   </dd>
                 </dl>
                 <Image
-                  src={business.image?.url as string}
+                  src={business.data.image?.url as string}
                   alt=""
-                  width={business.image?.width as number}
-                  height={business.image?.height as number}
+                  width={business.data.image?.width as number}
+                  height={business.data.image?.height as number}
                   class="image"
                 />
               </li>

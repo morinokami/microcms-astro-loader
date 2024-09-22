@@ -1,6 +1,6 @@
 import 'highlight.js/styles/hybrid.css';
 
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import { format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
 import hljs from 'highlight.js';

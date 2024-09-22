@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import close from '@/images/close.svg';
-import menu from '@/images/menu.svg';
+import close from "@/images/close.svg";
+import menu from "@/images/menu.svg";
 ---
 
 <div>
@@ -83,15 +83,15 @@ import menu from '@/images/menu.svg';
 
 <script>
   let open = false;
-  const nav = document.querySelector('.nav');
-  const toggles = document.querySelectorAll('.menu-toggle');
+  const nav = document.querySelector(".nav");
+  const toggles = document.querySelectorAll(".menu-toggle");
   toggles.forEach((toggle) => {
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener("click", () => {
       open = !open;
       if (open) {
-        nav?.classList.add('open');
+        nav?.classList.add("open");
       } else {
-        nav?.classList.remove('open');
+        nav?.classList.remove("open");
       }
     });
   });
