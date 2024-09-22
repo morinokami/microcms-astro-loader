@@ -2,10 +2,13 @@ import { defineCollection, z } from "astro:content";
 import { MICROCMS_API_KEY, MICROCMS_SERVICE_DOMAIN } from "astro:env/server";
 import { microCMSListLoader } from "microcms-astro-loader";
 
-const microCMSConfig = {
-  apiKey: MICROCMS_API_KEY,
-  serviceDomain: MICROCMS_SERVICE_DOMAIN,
-};
+function createLoader(endpoint: string) {
+  return microCMSListLoader({
+    apiKey: MICROCMS_API_KEY,
+    serviceDomain: MICROCMS_SERVICE_DOMAIN,
+    endpoint,
+  });
+}
 
 const microCMSMeta = {
   id: z.string(),
@@ -22,10 +25,7 @@ const microCMSImage = z.object({
 });
 
 const news = defineCollection({
-  loader: microCMSListLoader({
-    ...microCMSConfig,
-    endpoint: "news",
-  }),
+  loader: createLoader("news"),
   schema: z.object({
     ...microCMSMeta,
     title: z.string(),
@@ -36,10 +36,7 @@ const news = defineCollection({
 });
 
 const businesses = defineCollection({
-  loader: microCMSListLoader({
-    ...microCMSConfig,
-    endpoint: "businesses",
-  }),
+  loader: createLoader("businesses"),
   schema: z.object({
     ...microCMSMeta,
     logo: microCMSImage.optional(),
@@ -50,10 +47,7 @@ const businesses = defineCollection({
 });
 
 const members = defineCollection({
-  loader: microCMSListLoader({
-    ...microCMSConfig,
-    endpoint: "members",
-  }),
+  loader: createLoader("members"),
   schema: z.object({
     ...microCMSMeta,
     name: z.string(),

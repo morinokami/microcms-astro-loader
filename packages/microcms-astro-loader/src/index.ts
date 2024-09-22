@@ -20,7 +20,7 @@ export function microCMSListLoader({
 	return {
 		name: "microcms-list-loader",
 		load: async ({ logger, store, parseData }) => {
-			logger.info("Loading list data from microCMS");
+			logger.info(`Loading list data ${endpoint} from microCMS`);
 			store.clear();
 
 			const list = await client.getAllContents({ endpoint });
@@ -29,7 +29,7 @@ export function microCMSListLoader({
 				store.set({ id: parsedData.id, data: parsedData });
 			}
 
-			logger.info("List data loaded");
+			logger.info(`${endpoint} loaded`);
 		},
 	};
 }
@@ -47,14 +47,14 @@ export function microCMSObjectLoader({
 	return {
 		name: "microcms-object-loader",
 		load: async ({ logger, store, parseData }) => {
-			logger.info("Loading object data from microCMS");
+			logger.info(`Loading object data ${endpoint} from microCMS`);
 			store.clear();
 
 			const object = await client.getObject({ endpoint });
 			const parsedData = await parseData({ id: endpoint, data: object });
 			store.set({ id: endpoint, data: parsedData });
 
-			logger.info("Object data loaded");
+			logger.info(`${endpoint} loaded`);
 		},
 	};
 }
