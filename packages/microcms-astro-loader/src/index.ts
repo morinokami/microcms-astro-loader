@@ -7,7 +7,7 @@ interface LoaderOptions {
 	endpoint: string;
 }
 
-export function microCMSListLoader({
+export function microCMSContentLoader({
 	apiKey,
 	serviceDomain,
 	endpoint,
@@ -18,13 +18,13 @@ export function microCMSListLoader({
 	});
 
 	return {
-		name: "microcms-list-loader",
+		name: "microcms-content-loader",
 		load: async ({ logger, store, parseData }) => {
-			logger.info(`Loading list data ${endpoint} from microCMS`);
+			logger.info(`Loading content data ${endpoint} from microCMS`);
 			store.clear();
 
-			const list = await client.getAllContents({ endpoint });
-			for (const item of list) {
+			const contents = await client.getAllContents({ endpoint });
+			for (const item of contents) {
 				const parsedData = await parseData({ id: item.id, data: item });
 				store.set({ id: parsedData.id, data: parsedData });
 			}

@@ -1,9 +1,9 @@
 import { defineCollection, z } from "astro:content";
 import { MICROCMS_API_KEY, MICROCMS_SERVICE_DOMAIN } from "astro:env/server";
-import { microCMSListLoader } from "microcms-astro-loader";
+import { microCMSContentLoader } from "microcms-astro-loader";
 
 function createLoader(endpoint: string) {
-  return microCMSListLoader({
+  return microCMSContentLoader({
     apiKey: MICROCMS_API_KEY,
     serviceDomain: MICROCMS_SERVICE_DOMAIN,
     endpoint,
