@@ -16,6 +16,6 @@
 		"build:playground": "bun run --cwd playground build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.2"
+		"@biomejs/biome": "1.9.4"
 	}
 }

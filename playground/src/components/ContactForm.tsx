@@ -1,7 +1,7 @@
 import { actions, isInputError } from "astro:actions";
 import React, { useRef, useState } from "react";
 
-import * as styles from "./ContactForm.css";
+import styles from "./ContactForm.module.css";
 
 export default function ContactForm() {
   const lastnameRef = useRef<HTMLInputElement>(null);
@@ -44,6 +44,7 @@ export default function ContactForm() {
       </p>
     );
   }
+
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div className={styles.horizontal}>

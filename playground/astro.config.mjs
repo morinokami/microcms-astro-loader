@@ -1,7 +1,6 @@
 // @ts-check
 import react from "@astrojs/react";
-import vercel from '@astrojs/vercel/serverless';
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+import vercel from '@astrojs/vercel';
 import { defineConfig, envField } from "astro/config";
 
 // https://astro.build/config
@@ -27,7 +26,4 @@ export default defineConfig({
     domains: ["images.microcms-assets.io"],
   },
   integrations: [react()],
-  vite: {
-    plugins: [vanillaExtractPlugin()],
-  },
 });

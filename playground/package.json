@@ -10,25 +10,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "3.6.2",
-    "@astrojs/check": "0.9.3",
-    "@astrojs/vercel": "7.8.1",
-    "@vanilla-extract/css": "1.15.5",
-    "astro": "5.0.0-beta.2",
+    "@astrojs/react": "4.1.5",
+    "@astrojs/check": "0.9.4",
+    "@astrojs/vercel": "8.0.2",
+    "astro": "5.1.7",
     "cheerio": "1.0.0",
     "date-fns": "4.1.0",
-    "date-fns-tz": "3.1.3",
-    "highlight.js": "11.10.0",
+    "date-fns-tz": "3.2.0",
+    "highlight.js": "11.11.1",
     "microcms-astro-loader": "workspace:*",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "typescript": "5.6.2"
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "typescript": "5.7.3"
   },
   "devDependencies": {
-    "@types/react": "18.3.8",
-    "@types/react-dom": "18.3.0",
-    "@vanilla-extract/vite-plugin": "4.0.15",
-    "prettier": "3.3.3",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "prettier": "3.4.2",
     "prettier-plugin-astro": "0.14.1"
   }
 }
