@@ -59,4 +59,4 @@ const posts = await getCollection("posts");
 
 ## デモ
 
-このパッケージのデモプロジェクトを https://microcms-astro-loader-demo.vercel.app/ にデプロイしてあります。デモのソースコードは [`playground`](./playground) ディレクトリから確認可能です。
+このパッケージのデモプロジェクトを https://microcms-astro-loader-demo.vercel.app/ にデプロイしてあります。デモのソースコードは [`playground`](https://github.com/morinokami/microcms-astro-loader/tree/main/playground) ディレクトリから確認可能です。

@@ -1,6 +1,6 @@
 # microcms-astro-loader
 
-[日本語](./README.ja.md)
+[日本語](https://github.com/morinokami/microcms-astro-loader/blob/main/packages/microcms-astro-loader/README.ja.md)
 
 [microCMS](https://microcms.io/) Content Loader for the Astro Content Layer.
 
@@ -59,4 +59,4 @@ There is also the `microCMSObjectLoader` function, which is useful for loading a
 
 ## Demo
 
-You can find a demo project of this package on https://microcms-astro-loader-demo.vercel.app/. The source code for the demo is available in the [`playground`](./playground) directory.
+You can find a demo project of this package on https://microcms-astro-loader-demo.vercel.app/. The source code for the demo is available in the [`playground`](https://github.com/morinokami/microcms-astro-loader/tree/main/playground) directory.
