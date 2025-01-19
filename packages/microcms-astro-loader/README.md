@@ -10,7 +10,7 @@ npm install microcms-astro-loader
 
 ## Usage
 
-In your `src/content/config.ts`, define your collections with the `microCMSContentLoader` function. This function will fetch all the content from the specified microCMS endpoint and store it in the data store.
+In your `src/content.config.ts`, define your collections with the `microCMSContentLoader` function. This function will fetch all the content from the specified microCMS endpoint and store it in the data store.
 
 ```ts
 import { defineCollection, z } from "astro:content";
@@ -22,7 +22,7 @@ const posts = defineCollection({
     serviceDomain: "your-microcms-service-domain",
     endpoint: "your-microcms-endpoint", // e.g. "blog" or "posts"
   }),
-  // Define the schema of the content
+  // Define the schema of your content
   schema: z.object({
     id: z.string(),
     title: z.string(),
