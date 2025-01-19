@@ -2,14 +2,6 @@ import { defineCollection, z } from "astro:content";
 import { MICROCMS_API_KEY, MICROCMS_SERVICE_DOMAIN } from "astro:env/server";
 import { microCMSContentLoader } from "microcms-astro-loader";
 
-function createLoader(endpoint: string) {
-  return microCMSContentLoader({
-    apiKey: MICROCMS_API_KEY,
-    serviceDomain: MICROCMS_SERVICE_DOMAIN,
-    endpoint,
-  });
-}
-
 const microCMSMeta = {
   id: z.string(),
   createdAt: z.string().datetime(),
@@ -25,7 +17,11 @@ const microCMSImage = z.object({
 });
 
 const news = defineCollection({
-  loader: createLoader("news"),
+  loader: microCMSContentLoader({
+    apiKey: MICROCMS_API_KEY,
+    serviceDomain: MICROCMS_SERVICE_DOMAIN,
+    endpoint: "news"
+  }),
   schema: z.object({
     ...microCMSMeta,
     title: z.string(),
@@ -36,7 +32,11 @@ const news = defineCollection({
 });
 
 const businesses = defineCollection({
-  loader: createLoader("businesses"),
+  loader: microCMSContentLoader({
+    apiKey: MICROCMS_API_KEY,
+    serviceDomain: MICROCMS_SERVICE_DOMAIN,
+    endpoint: "businesses",
+  }),
   schema: z.object({
     ...microCMSMeta,
     logo: microCMSImage.optional(),
@@ -47,7 +47,11 @@ const businesses = defineCollection({
 });
 
 const members = defineCollection({
-  loader: createLoader("members"),
+  loader: microCMSContentLoader({
+    apiKey: MICROCMS_API_KEY,
+    serviceDomain: MICROCMS_SERVICE_DOMAIN,
+    endpoint: "members",
+  }),
   schema: z.object({
     ...microCMSMeta,
     name: z.string(),

@@ -6,7 +6,6 @@ import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://microcms-astro-loader-demo.vercel.app",
-  output: 'server',
   adapter: vercel({
     imageService: true,
   }),

@@ -1,7 +1,4 @@
 ---
-export const prerender = true;
-
-import type { InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
 
 import Article from "@/components/Article.astro";
@@ -23,8 +20,6 @@ export async function getStaticPaths() {
     };
   });
 }
-
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { data } = Astro.props;
 ---
