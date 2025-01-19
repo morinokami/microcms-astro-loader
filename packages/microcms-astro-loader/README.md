@@ -1,5 +1,7 @@
 # microcms-astro-loader
 
+[日本語](./README.ja.md)
+
 [microCMS](https://microcms.io/) Content Loader for the Astro Content Layer.
 
 ## Install
@@ -54,3 +56,7 @@ const posts = await getCollection("posts");
 ```
 
 There is also the `microCMSObjectLoader` function, which is useful for loading a single object. You can use it in the same way as `microCMSContentLoader`, but it will return a single object instead of an array.
+
+## Demo
+
+You can find a demo project of this package on https://microcms-astro-loader-demo.vercel.app/. The source code for the demo is available in the [`playground`](./playground) directory.
